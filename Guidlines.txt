@@ -1,0 +1,15 @@
+PRD(Project Requirment Document)
+Initialize npm package npm init
+add .prettierrc and .prettierignore
+add .gitignore
+make server auto restart using nodemon package 
+add dotenv package
+add .env file in the root directory 
+add folder structure
+add & setup express
+add app.js for better readability of index.js
+add CORS middleware in app.js
+add error & response handling 
+add api-response,api-error & constants .js
+add mongoose package
+connect to DB
