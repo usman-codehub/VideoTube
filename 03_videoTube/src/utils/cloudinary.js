@@ -1,9 +1,11 @@
 import { v2 as cloudinary } from "cloudinary"
-import { response } from "express"
 import fs from "fs"
+import dotenv from "dotenv"
+
+dotenv.config()
 
 
-// clodinary config
+// cloudinary config
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_NAME,
@@ -11,7 +13,7 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET,
 })
 
-export const uploadOnCloudinary = async (localFilePath) => {
+const uploadOnCloudinary = async (localFilePath) => {
     try {
         if (!localFilePath) return null
         const response = await cloudinary.uploader.upload(
@@ -29,6 +31,21 @@ export const uploadOnCloudinary = async (localFilePath) => {
     }
 }
 
-export {
-    uploadOnCloudinary
+const deleteFromCloudinary = async (publicId) => {
+    try {
+        cloudinary.uploader.destroy(publicId)
+        console.log("Deleted From Cloudinary");
+    } catch (error) {
+        console.log("Error deleting from cloudinary", error)
+        return null
+    }
 }
+
+
+
+export {
+    uploadOnCloudinary,
+    deleteFromCloudinary
+}
+
+
